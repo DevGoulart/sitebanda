@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Inscrição</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
+		.form-wrapper {
+			background-color: #fff;
+			box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+			padding: 40px;
+			border-radius: 10px;
+			width: 80%;
+			max-width: 400px;
+		}
+		h3 {
+			text-align: center;
+			color: #333;
+			margin-bottom: 20px;
+		}
+		label {
+			display: block;
+			font-weight: bold;
+			color: #555;
+			margin-bottom: 5px;
+		}
+		input[type="text"],
+		input[type="email"],
+		input[type="password"],
+		input[type="date"] {
+			width: 100%;
+			padding: 12px;
+			margin-bottom: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 16px;
+		}
+		input[type="checkbox"] {
+			margin-right: 5px;
+		}
+		.gender-label {
+			color: #777;
+			margin-top: 15px;
+		}
+		.gender-checkboxes {
+			margin-top: 5px;
+		}
+		input[type="submit"] {
+			background-color: #007bff;
+			color: white;
+			border: none;
+			padding: 15px;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 100%;
+			font-size: 18px;
+			transition: background-color 0.3s ease-in-out;
+		}
+		input[type="submit"]:hover {
+			background-color: #0056b3;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="form-wrapper">
+			<h3>Deixe seu feedback</h3>
+			<form action="cadastrar.php">
+				<label for="nome">Nome:</label>
+				<input type="text" name="nome" id="nome">
+				<label for="dataMat">Data de Nascimento:</label>
+				<input type="date" name="dataMat" id="dataMat">
+				<label for="bairro">Bairro:</label>
+				<input type="text" name="bairro" id="bairro">
+				<label for="email">Email:</label>
+				<input type="email" name="email" id="email">
+				<label for="senha">Senha:</label>
+				<input type="password" name="senha" id="senha">
+				<label for="estado">Estado de Residência:</label>
+				<input name="estado" list="estados" type="text" id="estadosBrasileiros">
+				<datalist id="estados">
+					<option value="AC"> Acre </option>
+					<option value="AL"> Alagoas </option>
+					<option value="AP"> Amapá </option>
+					<option value="AM"> Amazonas </option>
+					<option value="BA"> Bahia </option>
+					<option value="CE"> Ceará </option>
+					<option value="DF"> Distrito Federal </option>
+					<option value="ES"> Espírito Santo </option>
+					<option value="GO"> Goiás </option>
+					<option value="MA"> Maranhão </option>
+					<option value="MT"> Mato Grosso </option>
+					<option value="MS"> Mato Grosso do Sul </option>
+					<option value="MG"> Minas Gerais </option>
+					<option value="PA"> Pará </option>
+					<option value="PB"> Paraíba </option>
+					<option value="PR"> Paraná </option>
+					<option value="PE"> Pernambuco </option>
+					<option value="PI"> Piauí </option>
+					<option value="RJ"> Rio de Janeiro </option>
+					<option value="RN"> Rio Grande do Norte </option>
+					<option value="RS"> Rio Grande do Sul </option>
+					<option value="RO"> Rondônia </option>
+					<option value="PR"> Roraima </option>
+					<option value="SC"> Santa Catarina </option>
+					<option value="SP"> São Paulo </option>
+					<option value="SE"> Sergipe </option>
+					<option value="TO"> Tocantis </option>
+				</datalist>
+				<label for="feedback">Feedback:</label>
+				<input type="text" name="feedback" id="feedback">
+				<div class="gender-label">Sexo:</div>
+				<div class="gender-checkboxes">
+					<label for="masculino">Masculino</label>
+					<input type="checkbox" id="masculino" checked>
+					<label for="feminino">Feminino</label>
+					<input type="checkbox" id="feminino">
+					<label for="outro">Outro</label>
+					<input type="checkbox" id="outro"></br>
+				</div>
+				<input type="submit" value="Enviar">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

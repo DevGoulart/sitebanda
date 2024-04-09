@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>AMBITECH</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Source+Serif+Pro:wght@300;400;600;700&family=Ubuntu:ital,wght@0,400;0,500;1,700&display=swap');
+
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root{
+            font-size: 62.5%;
+            line-height: 1.6rem;
+            font-family: 'Source Serif Pro', serif;
+            background: #fffafa;
+        }
+
+        a:link {
+            color: #4b4a4a;
+            font-family: 'Source Serif Pro', serif;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #f2f2f2;
+        }
+
+        a:active {
+            background-color: #8a8a8a;
+        }
+
+        .container{
+            max-width: 1300px;
+            width: 90%;
+            margin: 0% auto;
+        }
+
+        .fa{
+            display: none;
+        }
+        .header{
+            min-height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/main.jpg);
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .navbar{
+            position:fixed;
+            display: flex;
+            padding: 5px 6%;
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: 0px 5px 10px 0px rgba(51, 51, 51, 0.158);
+            width: 100%;
+            background: #f2f2f2;
+            z-index: 2;
+        }
+
+        .nav-links{
+            flex: 1;
+            text-align: right;
+        }
+
+        .logo{
+            width: 100px;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links ul li{
+            list-style: none;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            padding-top: 3rem;
+            position: relative;
+        }
+
+
+
+        .nav-links ul li::after{
+            content: '';
+            width:0%;
+            height: 3px;
+            background: #ff0000;
+            display: block;
+            margin: auto;
+            transition: 0.5s ease-in-out;
+        }
+
+        .nav-links ul li:hover::after{
+            width: 100%;
+        }
+
+        .nav-links ul li a{
+            font-size: 2.2rem;
+            text-decoration: none;
+            line-height: 1.7rem;
+            color: #222;
+            transition: 0.5s ease;
+        }
+
+        .nav-links ul li a:hover{
+            color: #ff0000;
+        }
+
+        /* --------------------header-body styling--------------- */
+
+        .text-box{
+            /* width: 90%; */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: #fff;
+            font-size: 1.6rem;
+            text-align: center;
+            transform: translate(-50% ,-50%);
+        }
+
+        .text-box h1{
+            font-size: 4rem;
+            padding: 2rem;
+            color: #fff;
+        }
+
+        .text-box p{
+            font-size: 2.5rem;
+            color: #fff;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.7rem;
+        }
+
+        .btn{
+            border: 1px solid #ff0000;
+            display: inline-block;
+            min-width: 12%;
+            text-align: center;
+            padding: 0.7rem 2rem;
+            color: #fff;
+            background: transparent;
+            font-size: 1.8rem;
+            transition: 0.5s ease-in;
+            cursor: pointer;
+        }
+
+        .btn:hover{
+            background: #ff0000;
+            color: #fff;
+        }
+
+
+        /* --------tournament styling------------ */
+
+        .categories h1{
+            margin-top: 100px;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            padding-bottom: 2rem;
+            font-weight: 600;
+            color: #222;
+            border-bottom: 3px solid #ff0000;  
+        }
+
+        .categories span{
+            color: #ff0000;
+        }
+
+        .categories p{
+            text-align: center;
+            color: #333;
+            font-size: 2.2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .row{
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .col{
+            flex-basis: 32%;
+            padding: 1rem 0.5rem;
+            margin-bottom: 3.5rem;
+            transition: all 0.3s ease-in-out;
+            background: #f2f2f2;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .col img{
+            min-width: 250px;
+            width: 100%;
+        }
+
+        .col h2{
+            font-size: 3rem;
+            color: #000000;
+            margin-top: 1rem;
+            padding: 0.5rem auto;
+            text-align: center;
+            padding-bottom: 1rem;
+        }
+
+        .col h2 span{
+            color: #ff0000;
+        }
+
+        .col:hover{
+            transform: translateY(-8px);
+        }
+
+
+        /* --------------- teams styling -------------- */
+
+
+        .col-2:hover{
+            transform: translateY(-10px);
+        }
+
+        /* ---------------- upcoming game styling ----------- */
+
+        .upcoming{
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            object-fit: cover;
+            object-position: center;
+            background-image: linear-gradient(rgba(4,9,30,0.6),rgba(4,9,30,0.6)),url(images/marvel.jpg);
+            margin: 5rem 0;
+        }
+
+        .up-content{
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .up-content h2{
+            font-size: 2.2rem;
+            color: #ff4229;
+            text-align: center;
+            padding: 1.5rem ;
+            margin: 0.5rem;
+        }
+
+        .up-content span{
+            color: #fff;
+        }
+
+        .up-content h1{
+            font-size: 3rem;
+            color: #fff;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.2rem;
+        }
+
+        .up-content p{
+            text-align: center;
+            font-size: 2.2rem;
+            color: #fff;
+            padding: 1rem;
+            margin: 0.5rem;
+        }
+
+        .up-content a{
+            text-decoration: none;
+            margin: 1.5rem;
+        }
+
+
+        /* wishes--------------- */
+
+        .testimonial{
+            padding-top: 6rem;
+        }
+
+        .testimonial h1{
+            text-align: center;
+            color: #222;
+            font-weight: 600;
+            font-size: 3rem;
+            margin-bottom: 4.5rem;
+        }
+
+        .testimonial span{
+            color: rgb(255, 0, 0);
+        }
+
+        .col-3{
+            flex-basis: 23%;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.6);
+            transition: transform 0.5s ease;
+            background: #fff;
+            margin-bottom: 5rem;
+        }
+
+        .col-3:hover{
+            transform: translateY(-10px);
+        }
+
+        .col-3 img{
+            width: 50px;
+            margin-top: 1.5rem;
+            border-radius: 50%;
+            border: 0.8px solid #ff523b;
+        }
+        .col-3 p{
+            font-size: 1.8rem;
+            text-align: left;
+            color: #000000;
+        }
+
+        .col-3 h3{
+            font-weight: 400;
+            font-size: 2.0rem;
+            color: #000000;
+        }
+
+
+        .col-3 .rating{
+            color: #f44343;
+        }
+
+        .col-3 span{
+            color: #f44343;
+        }
+
+        .col-3 .fa-quote-left{
+            color: #f44343;
+            font-size: 1.8rem;
+        }
+
+        .rating{
+            padding: 1rem;
+            margin: 0.5rem auto;
+            font-size: 1.5rem;
+            color: #f44343;
+            text-align: center;
+        }
+
+        /* --------------- from blog styling ------------ */
+
+        .blog{
+            font-size: 3.5rem;
+            color: #222;
+            text-align: center;
+            margin: 4rem auto;
+        }
+
+        .blog span{
+            color: #ff324f;
+        }
+
+
+        .col p{
+            color: #333;
+            text-align: center;
+            font-size: 1.8rem;
+            padding: 1rem 0.5rem;
+            margin-top: 1rem;
+        }
+
+
+        /* ------------- news ---------- */
+
+        .col-5{
+            flex-basis: 24%;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            transition: transform 0.5s ease-in-out;
+            background: #fff;
+        }
+
+        .col-5:hover{
+            transform: translateY(-7px);
+        }
+
+        .col-5 img{
+            min-width: 250px;
+            width: 100%;
+        }
+
+        .col-5 p{
+            color: #333;
+            padding: 0.5rem 1rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+
+        .footer h1{
+            text-align: center;
+            color: #222;
+            font-size: 2.5rem;
+            margin: 3rem auto;
+        }
+
+
+        /* -------------- footer ------------ */
+
+        .footer{
+            background-color: #000;
+            color: #8a8a8a;
+            font-size: 2rem;
+            padding: 4rem 0 20px;
+        }
+
+        .footer p{
+            color: #8a8a8a;
+            font-size: 2.0rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer h3{
+            color: #fff;
+            margin-bottom: 1.0rem;
+            /* cursor: pointer; */
+        }
+
+        .col-6{
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col-1{
+            flex-basis: 30%;
+        }
+
+        .footer-col-2{
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-col-1 img{
+            width: 180px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .footer-col-3 ,.footer-col-4{
+            flex-basis: 12%;
+            text-align: center;
+        }
+
+        .col-6 ul{
+            list-style: none;
+        }
+
+        .col-6 ul li{
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .app-store{
+            margin-top: 20px;
+        }
+
+        .app-logo img{
+            width: 140px;
+        }
+
+
+        .copyright{
+            text-align: center;
+            padding-top: 0.5rem;
+            /* margin-bottom: 1rem; */
+        }
+
+        .copyright span{
+            color: #f44343;
+        }
+
+        .footer hr{
+            background: none;
+            height: 1px;
+            color: #8a8a8a;
+        }
+
+        .f-logo h1{
+            color: #fff;
+            font-size: 3rem;
+            padding-bottom: 1rem;
+        }
+
+        .f-logo span{
+            color: #ff523b;
+            font-size: 3.0rem;
+            padding-bottom: 1rem;
+
+        }
+
+
+
+
+        @media (max-width:350px){
+
+        }
+
+
+
+        @media  (min-width:351px ) and (max-width:500px){
+
+        }
+
+
+        @media (min-width:501px) and (max-width:768px){
+
+        }
+
+
+        @media(min-width:769px) and (max-width:1200px){
+            
+        }
+    </style>
+
+    <section class="header">
+        <nav class="navbar">
+            <a><img src="./img/logo.png" class="logo"></a>
+            <div class="nav-links">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="">Sobre</a></li>
+                    <li><a href="">Blog</a></li>
+                    <li><a href="">Galeria</a></li>
+                    <li><a href="./Contato/index.html">Contato</a></li>
+                </ul>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </div>  
+        </nav>
+        <div class="text-box container">
+            <h1>Cantina Universitária FUSVE!</h1>
+            <p>Confira todas as nossas opções de salgados e doces!<br><br> Compre pelo nosso site para agilizar seu atendimento!</p>
+            <a class="btn">Veja Mais!</a>
+        </div>
+    </section>
+    <div class="categories container">
+        <h1>Veja nosso <span>cardápio!</span></h1>
+        <p>Confira abaixo todas as nossas opções!</p>
+        <div class="row">
+                <div class="col">
+                    <img src="./img/hamburguer.png" alt="">
+                    <h2>Hambur<span>guer</span></h2>
+                </div>
+                <div class="col">
+                    <img src="./img/coxinha.png" alt="">
+                    <h2>Coxi<span>nha</span></h2>
+                </div>
+                <div class="col">
+                    <img src="./img/kibe.png" alt="">
+                    <h2>Ki<span>be</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row container">
+                <div class="col">
+                    <img src="./img/folhado.png" alt="">
+                    <h2>Folha<span>do</span></h2>
+                </div>
+                <div class="col">
+                    <img src="./img/pastel.png" alt="">
+                    <h2>Pas<span>tel</span></h2>
+                </div>
+                <div class="col">
+                    <img src="./img/croaçã.png" alt="">
+                    <h2>Croa<span>çã</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row container">
+                <div class="col">
+                    <img src="./img/sfruta.png" alt="">
+                    <h2>Salada de <span>frutas</span></h2>
+                </div>
+                <div class="col">
+                    <img src="./img/mkshake.png" alt="">
+                    <h2>Milk <span>Shake</span></h2>
+                </div>
+                <div class="col">
+                    <img src="./img/brigadeiro.png" alt="">
+                    <h2>Briga<span>deiro</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="novidades">
+        <div class="upcoming">
+            <div class="up-content container">
+                <h2><span>Confira as</span> NOVIDADES</h2>
+                <h1>Combo da semana!</h1>
+                <p>Combo mais que demais! <a href="https://univassouras.edu.br/">CLIQUE AQUI!</a> </p>
+                <a href="./Feedback/index.html" class="btn">Feedback</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="testimonial">
+        <h1>AVALIAÇÕES DOS <span>CLIENTES </span></h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <i class="fas fa-quote-left"></i>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto distinctio suscipit reprehenderit nisi, enim architecto beatae error voluptatem sunt voluptas!</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <img src="/Site principal/img/perfil 1.jpg" alt="pf.1">
+                    <h3>China <span>Stepperson</span></h3>
+                </div>
+                <div class="col-3">
+                    <i class="fas fa-quote-left"></i>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto distinctio suscipit reprehenderit nisi, enim architecto beatae error voluptatem sunt voluptas!</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <img src="/Site principal/img/perfil 2.png" alt="pf.2">
+                    <h3> João <span>Guilherme</span></h3>
+                </div>
+                <div class="col-3">
+                    <i class="fas fa-quote-left"></i>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto distinctio suscipit reprehenderit nisi, enim architecto beatae error voluptatem sunt voluptas!</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fasfa-star"></i>
+                    </div>
+                    <img src="/Site principal/img/perfil 3.png" alt="pf.3">
+                    <h3>Lucas <span>Freitas</span></h3>
+                </div>
+                <div class="col-3">
+                    <i class="fas fa-quote-left"></i>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto distinctio suscipit reprehenderit nisi, enim architecto beatae error voluptatem sunt voluptas!</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <img src="/Site principal/img/perfil 4.png" alt="pf.4">
+                    <h3>Roberth <span>Serrazine</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 footer-col-1">
+                    <h3>Download do app</h3>
+                    <p>Download para Android e IOS.</p>
+                    <div class="app-logo">
+                        <img src="play-store.png" alt="">
+                        <img src="app-store.png" alt="">
+                    </div>
+                </div>
+                <div class="col-6 footer-col-2">
+                    <a class="f-logo">
+                        <h1>Ambitech</h1>
+                    </a>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, reiciendis.</p>
+                </div>
+                <div class="col-6 footer-col-3">
+                    <h3>Ajuda?</h3>
+                    <ul>
+                        <li><a href="./Feedback/index.html">Feedback</a></li>
+                        <li><a href="./Contato/index.html">Suporte</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 footer-col-4">
+                    <h3>Siga a gente!</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/">Facebook</a></li>
+                        <li><a href="https://twitter.com/">X</a></li>
+                        <li><a href="https://www.instagram.com/">Instagram</a></li>
+                        <li><a href="https://www.youtube.com/">Youtube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p></p>
+            <p class="copyright">© Copyright 2024 | Ambitech</p>
+        </div>
+    </div>
+</body>
+</html>
